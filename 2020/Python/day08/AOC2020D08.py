@@ -29,7 +29,6 @@ def process_step(program, step, accumulator, steps):
 print('Part 1 answer :', process_step(puzzle_input, 0, 0, steps_part1)[0])
 
 # Part 2 :
-last_changed_index = -1
 step = 0
 cyclic_loop = True
 
