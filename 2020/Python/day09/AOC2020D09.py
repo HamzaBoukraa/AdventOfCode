@@ -1,12 +1,13 @@
 year = '2020'
 day = '09'
-preamble_size = 5
-suffix = '_1'
-preamble_size = 25
 suffix = ''
+# suffix = '_1'
 
 with open('..\..\Input\day{1}\AOC{0}D{1}_input{2}.txt'.format(year, day, suffix), 'r') as reader:
     puzzle_input = [int(input_line) for input_line in reader.read().split('\n')]
+
+preamble_size = 25
+# preamble_size = 5
 
 # Part 1 :
 matched = True
