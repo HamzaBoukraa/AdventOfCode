@@ -1,48 +1,27 @@
-year = '2020'
+from aocd import get_data
+import os
+
+year = '2021'
 day = '08'
 
-with open('..\..\Input\day{1}\AOC{0}D{1}_input.txt'.format(year, day), 'r') as reader:
-    puzzle_input = [input_line for input_line in reader.read().split('\n')]
+input_directory_folder_path = '..\..\Input\day{0}'.format(day)
+input_file_path = '{0}\AOC{1}D{2}_input.txt'.format(input_directory_folder_path,year, day)
 
-steps_part1 = [0 for s in range(len(puzzle_input))]
+if not os.path.exists(input_directory_folder_path):
+    os.makedirs(input_directory_folder_path)
 
-def process_step(program, step, accumulator, steps):
-    if step < len(program) and step < len(steps) and steps[step] == 0:
-        # print(step, program[step], accumulator)
-        steps[step] += 1
-        instruction = program[step].split(' ')
-        if instruction[0] == 'nop':
-            return process_step(program, step + 1, accumulator, steps)
-        elif instruction[0] == 'acc':
-            return process_step(program, step + 1, accumulator + int(instruction[1]), steps)
-        elif instruction[0] == 'jmp':
-            return process_step(program, step + int(instruction[1]), accumulator, steps)
-    else:
-        if step >= len(program):
-            # print('End Reached :', step)
-            return (accumulator, False, step) 
-        else:
-            # print('Already visited :', step, program[step])
-            return (accumulator, True, step, program[step]) 
+if not os.path.exists(input_file_path):
+    data = get_data(year=int(year),day=int(day))
+    
+    with open(input_file_path, 'w') as writer:
+        writer.write(data)
+
+# Get Puzzle Input
+with open(input_file_path, 'r') as reader:
+    puzzle_input =  [puzzle_line for puzzle_line in reader.read().split('\n')]
 
 # Part 1 :
-print('Part 1 answer :', process_step(puzzle_input, 0, 0, steps_part1)[0])
+print('Part 1 answer :', puzzle_input)
 
 # Part 2 :
-step = 0
-cyclic_loop = True
-
-while cyclic_loop and step < len(puzzle_input): 
-    puzzle_input_copy = puzzle_input.copy()
-    steps_part2 = [0 for s in range(len(puzzle_input_copy))]
-    instruction = puzzle_input_copy[step].split(' ')
-    if instruction[0] == 'nop' or instruction[0] == 'jmp':
-        if instruction[0] == 'nop':
-            puzzle_input_copy[step] = 'jmp ' + instruction[1]
-        elif instruction[0] == 'jmp':
-            puzzle_input_copy[step] = 'nop ' + instruction[1]
-
-        processing_results = process_step(puzzle_input_copy, 0, 0, steps_part2)
-        cyclic_loop = processing_results[1]
-    step += 1
-print('Part 2 answer :', processing_results[0])
+print('Part 2 answer :', puzzle_input)

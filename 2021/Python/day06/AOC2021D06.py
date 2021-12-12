@@ -1,18 +1,27 @@
-year = '2020'
+from aocd import get_data
+import os
+
+year = '2021'
 day = '06'
 
-with open('..\..\Input\day{1}\AOC{0}D{1}_input.txt'.format(year, day), 'r') as reader:
-    groups_answers = [group_answers for group_answers in reader.read().split('\n\n')]
+input_directory_folder_path = '..\..\Input\day{0}'.format(day)
+input_file_path = '{0}\AOC{1}D{2}_input.txt'.format(input_directory_folder_path,year, day)
+
+if not os.path.exists(input_directory_folder_path):
+    os.makedirs(input_directory_folder_path)
+
+if not os.path.exists(input_file_path):
+    data = get_data(year=int(year),day=int(day))
+    
+    with open(input_file_path, 'w') as writer:
+        writer.write(data)
+
+# Get Puzzle Input
+with open(input_file_path, 'r') as reader:
+    puzzle_input =  [puzzle_line for puzzle_line in reader.read().split('\n')]
 
 # Part 1 :
-print('Part 1 answer :', sum([len(sorted(set(group_answers.replace('\n', '')))) for group_answers in groups_answers]))
+print('Part 1 answer :', puzzle_input)
 
 # Part 2 :
-sum_common_answers = 0
-for groups_answers in [[set(sorted(person_answers)) for person_answers in groups_answers[group_number].split('\n')] for group_number in range(len(groups_answers))]:
-    common_answers = groups_answers[0]
-    for person_answers in groups_answers:
-        common_answers = person_answers & common_answers
-    sum_common_answers += len(common_answers)
-
-print('Part 2 answer :', sum_common_answers)
+print('Part 2 answer :', puzzle_input)
