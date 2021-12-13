@@ -20,8 +20,26 @@ if not os.path.exists(input_file_path):
 with open(input_file_path, 'r') as reader:
     puzzle_input =  [puzzle_line for puzzle_line in reader.read().split('\n')]
 
+lanterns = sorted([int(lantern) for lantern in [l.split(',') for l in puzzle_input][0]])
+
+fishes_map =[[s,len([l for l in lanterns if l==s])] for s in range(9)]
+
+def process(fishes_map,days)->int:
+    for day in range(1,days+1):
+        a = []
+        a += [[f[0]-1,f[1]] for f in fishes_map if f[0] > 0]
+        a += [[6,f[1]] for f in fishes_map if f[0] == 0]
+        a += [[8,f[1]] for f in fishes_map if f[0] == 0]
+
+        fishes_map = [[s,0] for s in range(9)]
+        for e in range(len(fishes_map)):
+            fishes_map[e][1] = sum([ax[1] for ax in a if ax[0]==e])
+
+        fishes = sum([f[1] for f in fishes_map])
+    return fishes
+
 # Part 1 :
-print('Part 1 answer :', puzzle_input)
+print('Part 1 answer :', process(fishes_map,80))
 
 # Part 2 :
-print('Part 2 answer :', puzzle_input)
+print('Part 2 answer :', process(fishes_map,256))
