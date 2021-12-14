@@ -1,5 +1,6 @@
 from aocd import get_data
 import os
+import math
 
 year = '2021'
 day = '07'
@@ -20,8 +21,10 @@ if not os.path.exists(input_file_path):
 with open(input_file_path, 'r') as reader:
     puzzle_input =  [puzzle_line for puzzle_line in reader.read().split('\n')]
 
+coordinates = [int(coordinate) for coordinate in [l.split(',') for l in puzzle_input][0]]
+
 # Part 1 :
-print('Part 1 answer :', puzzle_input)
+print('Part 1 answer :', min([sum([abs(c-shift)  for c in coordinates]) for shift in range(max(coordinates) + 1)]))
 
 # Part 2 :
-print('Part 2 answer :', puzzle_input)
+print('Part 2 answer :', min([sum([int((pow(abs(c - shift), 2) + abs(c - shift))/2)  for c in coordinates]) for shift in range(max(coordinates) + 1)]))
