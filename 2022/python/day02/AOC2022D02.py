@@ -18,11 +18,46 @@ if not os.path.exists(input_file_path):
 
 # Get Puzzle Input
 with open(input_file_path, 'r') as reader:
-    puzzle_input =  [puzzle_line for puzzle_line in reader.read().split('\n')]
+    puzzle_input =  [puzzle_line.split(' ') for puzzle_line in reader.read().split('\n')]
 
 
 # Part 1 :
-print('Part 1 answer :')
+total_score = 0
+for index in range(len(puzzle_input)):
+    first = puzzle_input[index][0]
+    second = puzzle_input[index][1]
+    score = 0
+    score += ord(second) - 87
+    if ord(first) == ord(second) - 23:
+        score += 3
+    elif (ord(first) == ord(second) - 23 - 1) or (ord(first) == ord(second) - 23 + 2):
+        score += 6
+    total_score += score 
+
+print('Part 1 answer :', total_score)
+
 
 # Part 2 :
-print('Part 2 answer :')
+total_score = 0
+for index in range(len(puzzle_input)):
+    first = puzzle_input[index][0]
+    second = puzzle_input[index][1]
+    score = 0
+    score += (ord(second) - 88) * 3
+    
+    if (first == 'A' and second == 'Y') \
+        or (first == 'B' and second == 'X') \
+        or (first == 'C' and second == 'Z'):
+        score += 1
+    elif (first == 'A' and second == 'Z') \
+        or (first == 'B' and second == 'Y') \
+        or (first == 'C' and second == 'X'):
+        score += 2
+    elif (first == 'A' and second == 'X') \
+        or (first == 'B' and second == 'Z') \
+        or (first == 'C' and second == 'Y'):
+        score += 3
+    
+    total_score += score
+
+print('Part 2 answer :', total_score)
