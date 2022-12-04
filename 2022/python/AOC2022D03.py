@@ -4,7 +4,7 @@ import os
 year = '2022'
 day = '03'
 
-input_directory_folder_path = '..\..\input\day{0}'.format(day)
+input_directory_folder_path = '..\input'
 input_file_path = '{0}\AOC{1}D{2}_input.txt'.format(input_directory_folder_path,year, day)
 
 if not os.path.exists(input_directory_folder_path):
