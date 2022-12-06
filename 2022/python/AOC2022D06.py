@@ -19,9 +19,28 @@ if not os.path.exists(input_file_path):
 # Get Puzzle Input
 with open(input_file_path, 'r') as reader:
     puzzle_input =  [puzzle_line for puzzle_line in reader.read().split('\n')]
+puzzle_input = puzzle_input[0]
+
+def process_puzzle(marker_characters):
+    marker_index = marker_characters
+    marker_found = False
+    while not marker_found and marker_index < len(puzzle_input):
+        markers = list(puzzle_input[(marker_index - marker_characters): marker_index])
+        if len(list(set(markers))) == marker_characters:
+            marker_found = True
+        else:
+            marker_index += 1
+    if marker_found:
+        return marker_index
+    else:
+        return -1
 
 # Part 1 :
-print('Part 1 answer :')
+print('Part 1 answer :', process_puzzle(4))
 
 # Part 2 :
-print('Part 2 answer :')
+print('Part 2 answer :', process_puzzle(14))
+
+# Example for other markers length
+# for i in range(1, 15):
+#     print(i, process_puzzle(i))
