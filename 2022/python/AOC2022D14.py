@@ -2,7 +2,7 @@ from aocd import get_data
 import os
 
 year = '2022'
-day = '11'
+day = '14'
 
 input_directory_folder_path = '..\input'
 input_file_path = '{0}\AOC{1}D{2}_input.txt'.format(input_directory_folder_path,year, day)

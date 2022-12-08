@@ -33,7 +33,7 @@ for puzzle_line in puzzle_input:
 
 
 # Part 1 :
-print('Part 1 answer :', max(elf_carriages))
+print('{0}{1} - Part 1 answer : {2}'.format(year, day, max(elf_carriages)))
 
 # Part 2 :
-print('Part 2 answer :', sum(sorted(elf_carriages)[-3:]))
+print('{0}{1} - Part 2 answer : {2}'.format(year, day, sum(sorted(elf_carriages)[-3:])))

@@ -32,10 +32,8 @@ for index in range(len(puzzle_input)):
         score += 3
     elif (ord(first) == ord(second) - 23 - 1) or (ord(first) == ord(second) - 23 + 2):
         score += 6
-    total_score += score 
-
-print('Part 1 answer :', total_score)
-
+    total_score += score
+print('{0}{1} - Part 1 answer : {2}'.format(year, day, total_score))
 
 # Part 2 :
 total_score = 0
@@ -56,8 +54,6 @@ for index in range(len(puzzle_input)):
     elif (first == 'A' and second == 'X') \
         or (first == 'B' and second == 'Z') \
         or (first == 'C' and second == 'Y'):
-        score += 3
-    
+        score += 3    
     total_score += score
-
-print('Part 2 answer :', total_score)
+print('{0}{1} - Part 2 answer : {2}'.format(year, day, total_score))

@@ -72,8 +72,8 @@ while input_position < len(puzzle_input):
     input_position += 1
 
 # Part 1 :
-print('Part 1 answer :', sum([directories[directory] for directory in directories if directories[directory] <= 100000]))
+print('{0}{1} - Part 1 answer : {2}'.format(year, day, sum([directories[directory] for directory in directories if directories[directory] <= 100000])))
 
 # Part 2 :
 required_space = 30000000 - (70000000 - [directories[directory] for directory in directories if directory == '/'][0])
-print('Part 2 answer :', min([directories[directory] for directory in directories if directories[directory] >= required_space]))
+print('{0}{1} - Part 2 answer : {2}'.format(year, day,  min([directories[directory] for directory in directories if directories[directory] >= required_space])))

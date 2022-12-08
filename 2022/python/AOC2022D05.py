@@ -29,13 +29,11 @@ stacks1 = copy.deepcopy(stacks)
 for instruction in instructions:
     stacks1[instruction[2]] += reversed(stacks1[instruction[1]][(-1 * instruction[0]):])
     stacks1[instruction[1]] = stacks1[instruction[1]][:(-1 * instruction[0])]
-
-print('Part 1 answer :', ''.join([s[-1] for s in stacks1]))
+print('{0}{1} - Part 1 answer : {2}'.format(year, day, ''.join([s[-1] for s in stacks1])))
 
 # Part 2 :
 stacks2 = copy.deepcopy(stacks)
 for instruction in instructions:
     stacks2[instruction[2]] += stacks2[instruction[1]][(-1 * instruction[0]):]
     stacks2[instruction[1]] = stacks2[instruction[1]][:(-1 * instruction[0])]
-
-print('Part 2 answer :', ''.join([s[-1] for s in stacks2]))
+print('{0}{1} - Part 2 answer : {2}'.format(year, day, ''.join([s[-1] for s in stacks2])))

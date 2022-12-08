@@ -36,11 +36,7 @@ def process_puzzle(marker_characters):
         return -1
 
 # Part 1 :
-print('Part 1 answer :', process_puzzle(4))
+print('{0}{1} - Part 1 answer : {2}'.format(year, day, process_puzzle(4)))
 
 # Part 2 :
-print('Part 2 answer :', process_puzzle(14))
-
-# Example for other markers length
-# for i in range(1, 15):
-#     print(i, process_puzzle(i))
+print('{0}{1} - Part 2 answer : {2}'.format(year, day, process_puzzle(14)))

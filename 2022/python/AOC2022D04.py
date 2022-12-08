@@ -21,7 +21,7 @@ with open(input_file_path, 'r') as reader:
     puzzle_input =  [[[int(p) for p in a.split('-')] for a in puzzle_line.split(',')] for puzzle_line in reader.read().split('\n')]
 
 # Part 1 :
-print('Part 1 answer :', len([p for p in puzzle_input if (p[0][0] <= p[1][0] and p[0][1] >= p[1][1]) or (p[0][0] >= p[1][0] and p[0][1] <= p[1][1])]))
+print('{0}{1} - Part 1 answer : {2}'.format(year, day, len([p for p in puzzle_input if (p[0][0] <= p[1][0] and p[0][1] >= p[1][1]) or (p[0][0] >= p[1][0] and p[0][1] <= p[1][1])])))
 
 # Part 2 :
-print('Part 2 answer :', len([p for p in puzzle_input if (p[0][0] >= p[1][0] and p[0][0] <= p[1][1]) or (p[0][1] <= p[1][1] and p[0][1] >= p[1][0]) or (p[1][0] >= p[0][0] and p[1][0] <= p[0][1]) or (p[1][1] <= p[0][1] and p[1][1] >= p[0][0])]))
+print('{0}{1} - Part 2 answer : {2}'.format(year, day, len([p for p in puzzle_input if (p[0][0] >= p[1][0] and p[0][0] <= p[1][1]) or (p[0][1] <= p[1][1] and p[0][1] >= p[1][0]) or (p[1][0] >= p[0][0] and p[1][0] <= p[0][1]) or (p[1][1] <= p[0][1] and p[1][1] >= p[0][0])])))

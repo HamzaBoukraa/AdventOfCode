@@ -67,11 +67,9 @@ while row_index < len(puzzle_input):
 
         column_index += 1
     row_index += 1
-
-print('Part 1 answer :', visible_trees)
+print('{0}{1} - Part 1 answer : {2}'.format(year, day, visible_trees))
 
 # Part 2 :
-
 highest_scenic_score = 0
 row_index = 1
 while row_index < len(puzzle_input):
@@ -130,5 +128,4 @@ while row_index < len(puzzle_input):
 
         column_index += 1
     row_index += 1
-
-print('Part 2 answer :', highest_scenic_score)
+print('{0}{1} - Part 2 answer : {2}'.format(year, day, highest_scenic_score))

@@ -34,9 +34,7 @@ for bag in puzzle_input:
     item_type = next(iter(set(sorted(c1)).intersection(set(sorted(c2)))))
     item_priority = get_priority(item_type)
     item_types += [[item_type,item_priority]]
-
-print('Part 1 answer :', sum([i[1] for i in item_types]))
-
+print('{0}{1} - Part 1 answer : {2}'.format(year, day, sum([i[1] for i in item_types])))
 
 # Part 2 :
 item_types = []
@@ -48,5 +46,4 @@ for bag in puzzle_input:
         item_priority = get_priority(item_type)
         item_types += [[item_type,item_priority]]
         temp_bags = []
-
-print('Part 2 answer :', sum([i[1] for i in item_types]))
+print('{0}{1} - Part 2 answer : {2}'.format(year, day, sum([i[1] for i in item_types])))

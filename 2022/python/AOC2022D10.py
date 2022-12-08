@@ -21,7 +21,7 @@ with open(input_file_path, 'r') as reader:
     puzzle_input =  [puzzle_line for puzzle_line in reader.read().split('\n')]
 
 # Part 1 :
-print('Part 1 answer :')
+print('{0}{1} - Part 1 answer : {2}'.format(year, day, 0))
 
 # Part 2 :
-print('Part 2 answer :')
+print('{0}{1} - Part 2 answer : {2}'.format(year, day, 0))
