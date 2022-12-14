@@ -20,7 +20,23 @@ if not os.path.exists(input_file_path):
 with open(input_file_path, 'r') as reader:
     puzzle_input =  [puzzle_line for puzzle_line in reader.read().split('\n')]
 
+def print_radar():
+    for r in range(len(radar)):
+        print(r, ''.join(radar[r]))
+
 # Part 1 :
+rocks = sorted(list(set([j for i in [[(int(rock_position.split(',')[1]), int(rock_position.split(',')[0])) for rock_position in rock_line.split(' -> ')] for rock_line in puzzle_input] for j in i])))
+max_depth = max([rp[0] for rp in rocks]) + 1
+max_position = max([rp[1] for rp in rocks]) + 1
+radar = [['.' for position in range(max_position + 1)] for depth in range(max_depth + 1)]
+
+radar[0][500] = '+'
+for rock in rocks:
+    radar[rock[0]][rock[1]] = '#'
+
+print_radar()
+
+
 print('{0}{1} - Part 1 answer : {2}'.format(year, day, 0))
 
 # Part 2 :
