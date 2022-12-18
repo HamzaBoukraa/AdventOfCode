@@ -82,11 +82,13 @@ for input_line in puzzle_input:
     # map_position = add_to_map(beacon_position, map_position)
     
     print(input_line, distance)
-    if (4000000 >= sensor_position[0] - distance) and (0 <= sensor_position[0] + distance):
-        for x in range(4000000):
-            for y in range(4000000):
+    if (4000000 >= sensor_position[0] - distance) and (0 <= sensor_position[0] + distance) and (4000000 >= sensor_position[1] - distance) and (0 <= sensor_position[1] + distance):
+        for x in range(max(0, sensor_position[0] - distance), min(4000000, sensor_position[0] + distance) + 1):
+            print([(m, s) for m in range(len(map_position)) for s in map_position[m][1] if map_position[m][0] == x])
+            for y in range(max(0, sensor_position[1] - distance), min(4000000, sensor_position[1] + distance) + 1):
                 if (y >= (sensor_position[1] - distance)) and (y <= (sensor_position[1] + distance + 1)) and ((abs(x - sensor_position[0]) + abs(y - sensor_position[1])) <= distance):
                     map_position = add_to_map((x,y), map_position)
+            print([(m, s) for m in range(len(map_position)) for s in map_position[m][1] if map_position[m][0] == x])
 
 for m in sorted(map_position):
     print(m)
