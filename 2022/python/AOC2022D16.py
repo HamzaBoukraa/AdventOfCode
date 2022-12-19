@@ -18,7 +18,16 @@ if not os.path.exists(input_file_path):
 
 # Get Puzzle Input
 with open(input_file_path, 'r') as reader:
-    puzzle_input =  [puzzle_line for puzzle_line in reader.read().split('\n')]
+    puzzle_input =  sorted([[p[0], int(p[1]), 'C', p[2:]] for p in [puzzle_line.replace(' tunnels lead to valves ','').replace(' tunnels lead to valve ','').replace(' tunnel leads to valve ','').replace('Valve ','').replace('has flow rate=','').replace(';',' ').replace(',','').split(" ") for puzzle_line in reader.read().split('\n')]])
+
+valves = puzzle_input
+open_valves = []
+minutes = 1
+release_pressure = 0
+position = 'AA'
+while minutes < 30:
+    valve = [v for v in valves if v[0] == position][0]
+    minutes += 1
 
 # Part 1 :
 print('{0}{1} - Part 1 answer : {2}'.format(year, day, 0))
