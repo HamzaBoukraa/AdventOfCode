@@ -1,8 +1,9 @@
 from aocd import get_data
 import os
 
-year = '2023'
-day = '09'
+puzzule_date = __file__.split('\\')[-1].split('.')[0].split('D')
+year = puzzule_date[0][3:]
+day = puzzule_date[1]
 
 input_directory_folder_path = '..\\input'
 input_file_path = '{0}\\AOC{1}D{2}_input.txt'.format(input_directory_folder_path,year, day)
