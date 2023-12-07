@@ -22,8 +22,40 @@ with open(input_file_path, 'r') as reader:
     puzzle_input =  [puzzle_line for puzzle_line in reader.read().split('\n')]
 
 
+numbers_list = []
+symbols_list = []
+
+for line_index in range(len(puzzle_input)):
+    for char_index in range(len(puzzle_input[line_index])):
+        char = puzzle_input[line_index][char_index]
+        if char != ".":
+            if char.isdigit():
+                if numbers_list and numbers_list[-1][1] == line_index and numbers_list[-1][3] == char_index - 1:
+                    numbers_list[-1] = [int(char) + (numbers_list[-1][0] * 10), line_index, numbers_list[-1][2], char_index]
+                else:
+                    numbers_list += [[int(char), line_index, char_index, char_index]]
+            else:
+                symbols_list += [[char, line_index, char_index]]
+
+for i in range(len(numbers_list)):
+    numbers_list[i] = [i, numbers_list[i][0], numbers_list[i][1], numbers_list[i][2], numbers_list[i][3], False]
+
+gear_parts_sum = 0
+for symbol in symbols_list:
+    parts = []
+    for number_item in [n for n in numbers_list if n[5] == False]:
+        if ((symbol[1] == number_item[2] and ((symbol[2] == number_item[4] + 1) or (symbol[2] == number_item[3] - 1))) \
+            or (((symbol[1] == number_item[2] - 1) or (symbol[1] == number_item[2] + 1)) and ((symbol[2] == number_item[3] - 1) or (symbol[2] == number_item[4] + 1))) \
+                or (((symbol[1] == number_item[2] - 1) or (symbol[1] == number_item[2] + 1)) and (symbol[2] >= number_item[3]) and (symbol[2] <= number_item[4]))) \
+                    and number_item[5] == False:
+            numbers_list[number_item[0]][5] = True
+            parts += [numbers_list[number_item[0]][1]]
+    if len(parts) == 2 and symbol[0] == '*':
+        gear_parts_sum += parts[0] * parts[1]
+
+
 # Part 1 :
-print('{0}{1} - Part 1 answer : {2}'.format(year, day, 1))
+print('{0}{1} - Part 1 answer : {2}'.format(year, day, sum([n[1] for n in numbers_list if n[5] == True])))
 
 # Part 2 :
-print('{0}{1} - Part 2 answer : {2}'.format(year, day, 2))
+print('{0}{1} - Part 2 answer : {2}'.format(year, day, gear_parts_sum))
