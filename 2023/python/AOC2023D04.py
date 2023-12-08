@@ -21,9 +21,14 @@ if not os.path.exists(input_file_path):
 with open(input_file_path, 'r') as reader:
     puzzle_input =  [puzzle_line for puzzle_line in reader.read().split('\n')]
 
-
+cards = [[c, len([s for s in c[2] if s in c[1]]), 1] for c in [[int(g[0][1]), g[1][0].split(), g[1][1].split()] for g in [[j[0].split(), j[1].split(' | ')] for j in [pi.split(': ') for pi in puzzle_input]]]]
 # Part 1 :
-print('{0}{1} - Part 1 answer : {2}'.format(year, day, 1))
+print('{0}{1} - Part 1 answer : {2}'.format(year, day, sum([pow(2, c[1]- 1) for c in cards if c[1] > 0])))
 
 # Part 2 :
-print('{0}{1} - Part 2 answer : {2}'.format(year, day, 2))
+for card_index in range(len(cards)):
+    if cards[card_index][1] > 0:
+        for i in range(card_index + 1, card_index + 1 + cards[card_index][1]):
+            cards[i][2] += cards[card_index][2]
+
+print('{0}{1} - Part 2 answer : {2}'.format(year, day, sum([c[2] for c in cards])))
