@@ -21,9 +21,12 @@ if not os.path.exists(input_file_path):
 with open(input_file_path, 'r') as reader:
     puzzle_input =  [puzzle_line for puzzle_line in reader.read().split('\n')]
 
+def part_1():
+    return 0
 
-# Part 1 :
-print('{0}{1} - Part 1 answer : {2}'.format(year, day, 1))
+def part_2():
+    return 0
 
-# Part 2 :
-print('{0}{1} - Part 2 answer : {2}'.format(year, day, 2))
+if __name__ == '__main__':
+    print('{0}{1} - Part 1 answer : {2}'.format(year, day, part_1()))
+    print('{0}{1} - Part 2 answer : {2}'.format(year, day, part_2()))

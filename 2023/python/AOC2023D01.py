@@ -22,9 +22,6 @@ if not os.path.exists(input_file_path):
 with open(input_file_path, 'r') as reader:
     puzzle_input =  [puzzle_line for puzzle_line in reader.read().split('\n')]
 
-# def get_first_digit(line):
-#     return int(next((character for character in line if character.isdigit()), None))
-
 literals = {'one': '1', 'two': '2', 'three': '3', 'four': '4', 'five': '5', 'six': '6', 'seven': '7', 'eight': '8', 'nine': '9'}   
 
 def get_first_and_last_digit_or_literal(line, digits_only = True):
@@ -41,15 +38,18 @@ def get_first_and_last_digit_or_literal(line, digits_only = True):
             last = word if word.isdigit() else literals[word]
     return (int(first) * 10) + int(last)
 
-def get_puzzle_answer(digits_only = True):
+def get_puzzle_answer(digits_only):
     puzzle_answer = 0
     for input in puzzle_input:
         puzzle_answer += get_first_and_last_digit_or_literal(input, digits_only)
     return puzzle_answer
 
+def part_1():
+    return get_puzzle_answer(digits_only = True)
 
-# Part 1 :
-print('{0}{1} - Part 1 answer : {2}'.format(year, day, get_puzzle_answer()))
+def part_2():
+    return get_puzzle_answer(digits_only = False)
 
-# Part 2 :
-print('{0}{1} - Part 2 answer : {2}'.format(year, day, get_puzzle_answer(False)))
+if __name__ == '__main__':
+    print('{0}{1} - Part 1 answer : {2}'.format(year, day, part_1()))
+    print('{0}{1} - Part 2 answer : {2}'.format(year, day, part_2()))

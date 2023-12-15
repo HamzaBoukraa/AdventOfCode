@@ -21,7 +21,6 @@ if not os.path.exists(input_file_path):
 with open(input_file_path, 'r') as reader:
     puzzle_input =  [puzzle_line for puzzle_line in reader.read().split('\n')]
 
-
 numbers_list = []
 symbols_list = []
 
@@ -53,9 +52,12 @@ for symbol in symbols_list:
     if len(parts) == 2 and symbol[0] == '*':
         gear_parts_sum += parts[0] * parts[1]
 
+def part_1():
+    return sum([n[1] for n in numbers_list if n[5] == True])
 
-# Part 1 :
-print('{0}{1} - Part 1 answer : {2}'.format(year, day, sum([n[1] for n in numbers_list if n[5] == True])))
+def part_2():
+    return gear_parts_sum
 
-# Part 2 :
-print('{0}{1} - Part 2 answer : {2}'.format(year, day, gear_parts_sum))
+if __name__ == '__main__':
+    print('{0}{1} - Part 1 answer : {2}'.format(year, day, part_1()))
+    print('{0}{1} - Part 2 answer : {2}'.format(year, day, part_2()))
