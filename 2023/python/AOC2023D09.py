@@ -21,11 +21,33 @@ if not os.path.exists(input_file_path):
 with open(input_file_path, 'r') as reader:
     puzzle_input =  [puzzle_line for puzzle_line in reader.read().split('\n')]
 
+sensors_raw_inputs = [[[int(si) for si in sil.split()]] for sil in puzzle_input]
+import copy
+
 def part_1():
-    return 0
+    sensors_inputs = copy.deepcopy(sensors_raw_inputs)
+    for sensor_index in range(len(sensors_inputs)):
+        sensor_inputs = sensors_inputs[sensor_index]
+        while len([s for s in sensor_inputs[-1]]) != len([s for s in sensor_inputs[-1] if s == 0]):
+            sensor_inputs += [[sensor_inputs[-1][si] - sensor_inputs[-1][si - 1] for si in range(1, len(sensor_inputs[-1]))]]
+        sensor_inputs[-1] += [0]
+        for l in range(2, len(sensor_inputs) + 1):
+            ind = -1 * l
+            sensor_inputs[ind] += [sensor_inputs[ind][-1] + sensor_inputs[ind + 1][-1]]
+    return sum([s[0][-1] for s in sensors_inputs])
 
 def part_2():
-    return 0
+    sensors_inputs = copy.deepcopy(sensors_raw_inputs)
+    for sensor_index in range(len(sensors_inputs)):
+        sensor_inputs = sensors_inputs[-1*(sensor_index+1)]
+        while len([s for s in sensor_inputs[-1]]) != len([s for s in sensor_inputs[-1] if s == 0]):
+            sensor_inputs += [[sensor_inputs[-1][si] - sensor_inputs[-1][si - 1] for si in range(1, len(sensor_inputs[-1]))]]
+        sensor_inputs[-1].insert(0, 0)
+        for l in range(2, len(sensor_inputs) + 1):
+            ind = -1 * l
+            sensor_inputs[ind].insert(0, sensor_inputs[ind][0] - sensor_inputs[ind + 1][0])
+    return sum([s[0][0] for s in sensors_inputs])
+
 
 if __name__ == '__main__':
     print('{0}{1} - Part 1 answer : {2}'.format(year, day, part_1()))
